@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thyneleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:replace="layout :: link-css"></th:block>
+  <title>Edit </title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+  <h1>Edit </h1>
+  <form th:action="@{/edit}" th:object="${nhanvien}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div class="col-6 mb-3">
+      <label class="form-label" for="ma_nv">MÃ NHÂN VIÊN:</label>
+      <input class="form-control" type="text" th:field="*{ma_nv}" id="ma_nv">
+
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="ten_nv">Tên Nhân Viên:</label>
+      <input class="form-control" type="text" th:field="*{ten_nv}" id="ten_nv">
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="phai">Phai:</label>
+      <input class="form-control" type="text" th:field="*{phai}" id="phai">
+
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="noi_sinh">Noi_Sinh:</label>
+      <input class="form-control" type="text" th:field="*{noi_sinh}" id="noi_sinh">
+
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="luong">Luong:</label>
+      <input class="form-control" type="text" th:field="*{luong}" id="luong">
+
+    </div>
+
+    <div class="col-6 mb-3">
+      <label class="form-label" for="phongban">Category:</label>
+      <select class="form-control" id="phongban" name="phongban.Ma_Phong">
+        <option value="">-- Select Category --</option>
+        <option th:each="phongban : ${phongbans}" th:value="${phongban.Ma_Phong}"
+                th:text="${phongban.Ten_Phong}"></option>
+      </select>
+
+    </div>
+    <input type="submit" value="Save">
+  </form>
+  <br>
+  <a th:href="@{/nhanviens}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
